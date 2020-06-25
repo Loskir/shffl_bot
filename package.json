@@ -1,0 +1,17 @@
+{
+  "name": "shffl_bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Loskir",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Loskir/shffl_bot.git"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.9.20",
+    "runes": "^0.4.3",
+    "telegraf": "^3.38.0"
+  }
+}
