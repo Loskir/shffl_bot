@@ -106,9 +106,20 @@ function shuffle(a) {
   return a
 }
 
+const isNotModified = (error) => error.description && error.description.match && error.description.match(/not modified/i)
+const catchNotModified = (error) => {
+  if (isNotModified(error)) {
+    return true
+  }
+  throw error
+}
+
 module.exports = {
   escapeHtml,
   formatHTML,
 
   shuffle,
+
+  isNotModified,
+  catchNotModified,
 }

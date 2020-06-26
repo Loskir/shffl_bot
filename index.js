@@ -7,7 +7,11 @@ const {Extra, Markup} = require('telegraf')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
-const {shuffle, formatHTML} = require('./utils')
+const {
+  shuffle,
+  formatHTML,
+  catchNotModified,
+} = require('./utils')
 
 bot.use(require('./users'))
 
@@ -67,13 +71,13 @@ bot.on('text', (ctx) => {
 })
 bot.action('reshuffle', async (ctx) => {
   console.log(`${new Date()} ${ctx.from.id} reshuffle`)
-  await ctx.answerCbQuery().catch(console.log)
+  await ctx.answerCbQuery()
   return ctx.editMessageText(
     formatHTML(processText(ctx.callbackQuery.message.text), ctx.callbackQuery.message.entities),
     Extra.HTML().markup(Markup.inlineKeyboard([
       Markup.callbackButton('Перемешать', 'reshuffle'),
     ])),
-  ).catch(console.log)
+  ).catch(catchNotModified)
 })
 
 void (async () => {
