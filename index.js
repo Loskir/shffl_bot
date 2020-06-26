@@ -16,7 +16,7 @@ const {
 bot.use(require('./users'))
 
 const processText = (text) => {
-  return text.replace(/(?<=^|\s).+?(?=$|[,.!?:\-—]|\s)/g, (word) => {
+  return text.replace(/(?<=^|\s).+?(?=$|[,.!?:\-—()\[\]{}]|\s)/g, (word) => {
     const chars = runes(word)
     if (chars.length <= 3) {
       return word
