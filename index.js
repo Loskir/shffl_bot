@@ -30,7 +30,7 @@ bot.on('inline_query', async (ctx) => {
       switch_pm_parameter: 'from_inline'
     })
   }
-  console.log(ctx.from.id, 'inline')
+  console.log(`${new Date()} ${ctx.from.id} inline`)
   const result = processText(ctx.inlineQuery.query)
   return ctx.answerInlineQuery([{
     type: 'article',
@@ -62,7 +62,7 @@ bot.start((ctx) => {
   return ctx.reply(getStartText(ctx), extra)
 })
 bot.on('text', (ctx) => {
-  console.log(ctx.from.id, 'text')
+  console.log(`${new Date()} ${ctx.from.id} text`)
   return ctx.reply(
     formatHTML(processText(ctx.message.text), ctx.message.entities),
     Extra.HTML().markup(Markup.inlineKeyboard([
@@ -71,14 +71,14 @@ bot.on('text', (ctx) => {
   )
 })
 bot.action('reshuffle', async (ctx) => {
-  console.log(ctx.from.id, 'reshuffle')
-  await ctx.answerCbQuery()
+  console.log(`${new Date()} ${ctx.from.id} reshuffle`)
+  await ctx.answerCbQuery().catch(console.log)
   return ctx.editMessageText(
     formatHTML(processText(ctx.callbackQuery.message.text), ctx.callbackQuery.message.entities),
     Extra.HTML().markup(Markup.inlineKeyboard([
       Markup.callbackButton('Перемешать', 'reshuffle'),
     ])),
-  )
+  ).catch(console.log)
 })
 
 void (async () => {
