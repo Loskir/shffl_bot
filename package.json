@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "mongoose": "^5.9.20",
+    "mongoose": "^5.13.15",
     "runes": "^0.4.3",
     "telegraf": "^3.38.0"
   }
